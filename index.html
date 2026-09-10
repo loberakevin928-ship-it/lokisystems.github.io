@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOKI SYSTEMS - Desarrollo de Software | POS, Inventarios y CRM en Cochabamba, Bolivia</title>
+    <meta name="description" content="Desarrollo de sistemas POS, inventarios y CRM a medida en Cochabamba, Bolivia. Sin mensualidades. Instalación en 24h. Solicita tu demo gratis.">
+    <meta name="keywords" content="sistema POS Cochabamba, POS Bolivia, inventario software, CRM Bolivia, desarrollo software Cochabamba, sistema punto de venta Bolivia, Loki Systems">
+    <meta name="author" content="LOKI SYSTEMS">
+    <meta property="og:title" content="LOKI SYSTEMS - Sistemas POS y Software a Medida">
+    <meta property="og:description" content="Desarrollamos POS, Inventarios y CRM a medida para comerciantes de Bolivia. Sin mensualidades.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.lokisystems.com">
+    <link rel="canonical" href="https://www.lokisystems.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --blue: #007BFF;
+            --blue-dark: #0056b3;
+            --blue-deeper: #004094;
+            --cyan: #00CFFF;
+            --cyan-light: #00D4FF;
+            --white: #FFFFFF;
+            --gray-dark: #1A1A1A;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --gray-lighter: #F9FAFB;
+            --green-whatsapp: #25D366;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+            --shadow-glow: 0 0 40px rgba(0,123,255,0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; height: auto; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== PRELOADER ===== */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: preloader-pulse 1s ease-in-out infinite;
+        }
+
+        .preloader-bar {
+            width: 120px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .preloader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            border-radius: 3px;
+            animation: preloader-slide 1s ease-in-out infinite;
+        }
+
+        @keyframes preloader-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes preloader-slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        /* ===== SCROLL PROGRESS ===== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            z-index: 10001;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in-left.visible { opacity: 1; transform: translateX(0); }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in-right.visible { opacity: 1; transform: translateX(0); }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--blue);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15));
+            top: 0;
+            left: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover { color: var(--blue); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: var(--radius-xs);
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .btn:hover::before { opacity: 1; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), #0066DD);
+            color: white;
+            box-shadow: 0 2px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 24px rgba(0, 123, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--blue);
+            border: 1.5px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue);
+            color: white;
+            border-color: var(--blue);
+            box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: var(--green-whatsapp);
+            color: white;
+            box-shadow: 0 2px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background: var(--gray-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(180deg, var(--gray-lighter) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0,207,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: hero-glow 8s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,123,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: hero-glow 8s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes hero-glow {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
+        /* Grid pattern overlay */
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,123,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,123,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(0, 123, 255, 0.06);
+            border: 1px solid rgba(0, 123, 255, 0.12);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--blue);
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-badge .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--blue);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,123,255,0.4); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(0,123,255,0); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+            line-height: 1.08;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 44px;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta .btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-stat h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--blue);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-stat p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-mockup {
+            width: 100%;
+            max-width: 520px;
+            background: var(--gray-dark);
+            border-radius: var(--radius);
+            padding: 12px;
+            box-shadow: var(--shadow-xl), 0 0 60px rgba(0,0,0,0.1);
+            position: relative;
+            transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-mockup:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .mockup-topbar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot:nth-child(1) { background: #FF5F57; }
+        .mockup-dot:nth-child(2) { background: #FFBD2E; }
+        .mockup-dot:nth-child(3) { background: #28C840; }
+
+        .mockup-screen {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 300px;
+        }
+
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .mockup-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+        }
+
+        .mockup-date {
+            font-size: 0.7rem;
+            color: var(--gray);
+            background: var(--gray-light);
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .mockup-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .mockup-card {
+            background: var(--gray-lighter);
+            border-radius: var(--radius-xs);
+            padding: 12px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .mockup-card-label {
+            font-size: 0.6rem;
+            color: var(--gray);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .mockup-card-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--gray-dark);
+        }
+
+        .mockup-card-change {
+            font-size: 0.6rem;
+            color: #22C55E;
+            font-weight: 600;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .mockup-chart {
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            padding: 8px 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.6s ease;
+            min-height: 10px;
+            position: relative;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+            transform-origin: bottom;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            box-shadow: var(--shadow-lg);
+            animation: float 4s ease-in-out infinite;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .floating-card-1 {
+            top: 20px;
+            right: -20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation-delay: 0.5s;
+        }
+
+        .floating-card-1 .fc-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #22C55E, #16A34A);
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .floating-card-1 .fc-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+        }
+
+        .floating-card-1 .fc-sub {
+            font-size: 0.65rem;
+            color: var(--gray);
+        }
+
+        .floating-card-2 {
+            bottom: 40px;
+            left: -30px;
+            animation-delay: 1s;
+        }
+
+        .floating-card-2 .fc-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .floating-card-2 .fc-avatars {
+            display: flex;
+        }
+
+        .floating-card-2 .fc-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .floating-card-2 .fc-avatar:first-child { margin-left: 0; }
+
+        .floating-card-2 .fc-info {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        .floating-card-2 .fc-sub {
+            font-size: 0.65rem;
+            color: var(--gray);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== SECTION COMMONS ===== */
+        .section { padding: 100px 0; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--blue);
+            margin-bottom: 16px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-dark);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ===== PROBLEMA / SOLUCION ===== */
+        .problem-section { background: var(--white); }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--gray-lighter);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .problem-card:hover::before { opacity: 1; }
+
+        .problem-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 123, 255, 0.08);
+        }
+
+        .problem-card.solution {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            border: none;
+        }
+
+        .problem-card.solution::before { display: none; }
+
+        .problem-card.solution h3,
+        .problem-card.solution p { color: white; }
+
+        .problem-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .problem-card:hover .problem-icon { transform: scale(1.1); }
+
+        .problem-card:not(.solution) .problem-icon {
+            background: rgba(0, 123, 255, 0.06);
+        }
+
+        .problem-card.solution .problem-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .problem-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .problem-card.solution p { color: rgba(255,255,255,0.85); }
+
+        /* ===== SISTEMAS ===== */
+        .sistemas-section { background: var(--gray-lighter); }
+
+        .sistemas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .sistema-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        .sistema-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            padding: 1px;
+            background: linear-gradient(135deg, transparent, rgba(0,123,255,0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .sistema-card:hover::before { opacity: 1; }
+
+        .sistema-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .sistema-card-header {
+            padding: 32px 28px 24px;
+        }
+
+        .sistema-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .sistema-card:hover .sistema-icon { transform: scale(1.1) rotate(-3deg); }
+
+        .sistema-card:nth-child(1) .sistema-icon {
+            background: linear-gradient(135deg, rgba(0,123,255,0.08), rgba(0,207,255,0.08));
+        }
+        .sistema-card:nth-child(2) .sistema-icon {
+            background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.08));
+        }
+        .sistema-card:nth-child(3) .sistema-icon {
+            background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.08));
+        }
+
+        .sistema-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .sistema-card p {
+            font-size: 0.88rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .sistema-card-body { padding: 0 28px 28px; }
+
+        .sistema-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .sistema-tech span {
+            padding: 5px 12px;
+            background: var(--gray-lighter);
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .sistema-card:hover .sistema-tech span {
+            background: rgba(0,123,255,0.06);
+            color: var(--blue);
+        }
+
+        .sistema-for {
+            font-size: 0.82rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .sistema-for strong { color: var(--gray-dark); }
+
+        .sistema-footer {
+            padding: 20px 28px;
+            border-top: 1px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sistema-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .sistema-price small {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .sistema-card .btn {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== TECNOLOGIAS ===== */
+        .tech-section {
+            background: var(--white);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .tech-scroll {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--gray-lighter);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border: 1px solid transparent;
+            cursor: default;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(0, 123, 255, 0.1);
+            background: white;
+        }
+
+        .tech-item-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .tech-item:hover .tech-item-icon { transform: scale(1.15); }
+
+        .tech-item span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        /* ===== TESTIMONIOS ===== */
+        .testimonials-section { background: var(--gray-lighter); }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: rgba(0,123,255,0.06);
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 123, 255, 0.08);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 16px;
+            color: #FBBF24;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--gray-dark);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card:nth-child(1) .testimonial-avatar {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+        }
+        .testimonial-card:nth-child(2) .testimonial-avatar {
+            background: linear-gradient(135deg, #F59E0B, #EF4444);
+        }
+        .testimonial-card:nth-child(3) .testimonial-avatar {
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+
+        .testimonial-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ===== TABLA COMPARATIVA ===== */
+        .compare-section { background: var(--white); }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .compare-table thead th {
+            padding: 20px 28px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .compare-table thead th:first-child {
+            text-align: left;
+            background: var(--gray-lighter);
+            color: var(--gray);
+        }
+
+        .compare-table thead th:nth-child(2) {
+            background: linear-gradient(135deg, var(--blue), #0066DD);
+            color: white;
+            position: relative;
+        }
+
+        .compare-table thead th:nth-child(2)::before {
+            content: 'MEJOR ELECCION';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-light));
+            color: var(--gray-dark);
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 0 0 8px 8px;
+            letter-spacing: 1px;
+        }
+
+        .compare-table thead th:nth-child(3) {
+            background: var(--gray-lighter);
+            color: var(--gray);
+        }
+
+        .compare-table tbody td {
+            padding: 18px 28px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-light);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .compare-table tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--gray-dark);
+        }
+
+        .compare-table tbody td:nth-child(2) {
+            background: rgba(0, 123, 255, 0.02);
+        }
+
+        .compare-table tbody tr:hover td:nth-child(2) {
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .compare-table tbody tr:last-child td { border-bottom: none; }
+
+        .compare-check { color: #22C55E; font-size: 1.2rem; }
+        .compare-x { color: #EF4444; font-size: 1.2rem; }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+
+        .cta-banner .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-banner .btn {
+            padding: 16px 40px;
+            font-size: 1.05rem;
+            background: white;
+            color: var(--blue);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .cta-banner .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ===== NOSOTROS ===== */
+        .about-section { background: var(--gray-lighter); }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .about-value {
+            padding: 12px 20px;
+            background: white;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+
+        .about-value:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(0,123,255,0.1);
+        }
+
+        .org-chart {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .org-title {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .org-node {
+            text-align: center;
+            padding: 20px 28px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: var(--radius-sm);
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+        }
+
+        .org-node::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 16px;
+            background: var(--blue);
+        }
+
+        .org-node-name { font-size: 1.1rem; font-weight: 700; }
+        .org-node-role { font-size: 0.8rem; opacity: 0.9; }
+
+        .org-branches {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding-top: 24px;
+        }
+
+        .org-branch {
+            text-align: center;
+            padding: 16px 12px;
+            background: var(--gray-lighter);
+            border-radius: var(--radius-xs);
+            transition: var(--transition);
+        }
+
+        .org-branch:hover {
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .org-branch-name { font-size: 0.8rem; font-weight: 700; color: var(--gray-dark); }
+        .org-branch-role { font-size: 0.7rem; color: var(--gray); margin-top: 2px; }
+
+        .mission-box {
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0,123,255,0.04), rgba(0,207,255,0.04));
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--blue);
+        }
+
+        .mission-box h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--blue);
+            margin-bottom: 6px;
+        }
+
+        .mission-box p {
+            font-size: 0.85rem;
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        /* ===== CONTACTO ===== */
+        .contact-section { background: var(--white); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form {
+            background: var(--gray-lighter);
+            border-radius: var(--radius);
+            padding: 40px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid rgba(0,0,0,0.08);
+            border-radius: var(--radius-xs);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+            background: white;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-info-card {
+            padding: 24px;
+            background: var(--gray-lighter);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .contact-info-card:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+            border-color: rgba(0,123,255,0.06);
+        }
+
+        .contact-info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-info-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .contact-info-text { font-size: 0.85rem; color: var(--gray); line-height: 1.5; }
+
+        .contact-map {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contact-map iframe { width: 100%; height: 100%; border: none; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--gray-dark);
+            color: white;
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--cyan); }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-xs);
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+        .footer-seo {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            background: var(--green-whatsapp);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            animation: whatsapp-pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: white;
+            color: var(--gray-dark);
+            padding: 10px 16px;
+            border-radius: var(--radius-xs);
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @keyframes whatsapp-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero .container { grid-template-columns: 1fr; gap: 40px; }
+            .hero-image { order: -1; }
+            .hero-mockup { max-width: 450px; transform: none; }
+            .problem-grid, .sistemas-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .about-content { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .cta-banner h2 { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions { display: none; }
+
+            .nav-links.active, .nav-actions.active {
+                display: flex;
+                position: fixed;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px;
+                box-shadow: var(--shadow-lg);
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .nav-actions.active {
+                top: auto;
+                position: relative;
+                margin-top: 0;
+            }
+
+            .hamburger { display: flex; }
+            .hero { padding: 120px 0 60px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 24px; }
+            .hero-stat h3 { font-size: 1.4rem; }
+            .section { padding: 60px 0; }
+            .section-title { font-size: 2rem; }
+            .compare-table { font-size: 0.8rem; }
+            .compare-table thead th, .compare-table tbody td { padding: 12px 14px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .org-branches { grid-template-columns: 1fr; }
+            .floating-card { display: none; }
+            .whatsapp-tooltip { display: none; }
+            .cta-banner { padding: 60px 0; }
+            .cta-banner h2 { font-size: 1.8rem; }
+            .cta-banner .btn { padding: 14px 32px; font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-cta { flex-direction: column; }
+            .hero-cta .btn { width: 100%; }
+            .tech-scroll { gap: 10px; }
+            .tech-item { padding: 10px 16px; font-size: 0.8rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .contact-form { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+        </div>
+        <div class="preloader-bar"></div>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </div>
+                LOKI SYSTEMS
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sistemas">Sistemas</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions" id="navActions">
+                <a href="https://wa.me/59176425697?text=Hola%20LOKI%20SYSTEMS%2C%20quiero%20una%20demo%20gratuita%20de%20sus%20sistemas" class="btn btn-primary" target="_blank">Demo Gratis</a>
+                <a href="https://wa.me/59176425697" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge fade-in">
+                    <span class="dot"></span>
+                    Hecho en Cochabamba, Bolivia
+                </div>
+
+                <h1 class="fade-in stagger-1">
+                    Sistemas que <span class="gradient-text">venden por ti.</span><br>
+                    Control total de tu negocio.
+                </h1>
+
+                <p class="hero-subtitle fade-in stagger-2">
+                    Desarrollamos POS, Inventarios y CRM a medida para comerciantes de Bolivia. Sin mensualidades. Instalacion en 24h.
+                </p>
+
+                <div class="hero-cta fade-in stagger-3">
+                    <a href="https://wa.me/59176425697?text=Hola%20LOKI%20SYSTEMS%2C%20quiero%20una%20demo%20gratuita" class="btn btn-primary" target="_blank">
+                        Solicitar Demo Gratis
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#sistemas" class="btn btn-secondary">Ver Sistemas</a>
+                </div>
+
+                <div class="hero-stats fade-in stagger-4">
+                    <div class="hero-stat">
+                        <h3><span data-count="50">0</span>+</h3>
+                        <p>Negocios activos</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3><span data-count="24">0</span>h</h3>
+                        <p>Instalacion rapida</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>$0<span data-count="" style="display:none">/m</span></h3>
+                        <p>Sin mensualidades</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image fade-in-right stagger-2">
+                <div class="hero-mockup">
+                    <div class="mockup-topbar">
+                        <div class="mockup-dot"></div>
+                        <div class="mockup-dot"></div>
+                        <div class="mockup-dot"></div>
+                    </div>
+                    <div class="mockup-screen">
+                        <div class="mockup-header">
+                            <div class="mockup-title">Dashboard POS</div>
+                            <div class="mockup-date">Septiembre 2026</div>
+                        </div>
+                        <div class="mockup-cards">
+                            <div class="mockup-card">
+                                <div class="mockup-card-label">Ventas</div>
+                                <div class="mockup-card-value">Bs 12,450</div>
+                                <div class="mockup-card-change">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
+                                    +24%
+                                </div>
+                            </div>
+                            <div class="mockup-card">
+                                <div class="mockup-card-label">Clientes</div>
+                                <div class="mockup-card-value">384</div>
+                                <div class="mockup-card-change">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
+                                    +12%
+                                </div>
+                            </div>
+                            <div class="mockup-card">
+                                <div class="mockup-card-label">Productos</div>
+                                <div class="mockup-card-value">1,205</div>
+                                <div class="mockup-card-change">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
+                                    +8%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mockup-chart">
+                            <div class="chart-bar" style="height:45%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:65%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:35%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:80%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:55%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:90%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:70%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:50%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:75%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:40%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:85%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                            <div class="chart-bar" style="height:95%;background:linear-gradient(to top, #007BFF, #00CFFF)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-1">
+                    <div class="fc-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <div class="fc-text">+156% ventas</div>
+                        <div class="fc-sub">Este mes</div>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-2">
+                    <div class="fc-row">
+                        <div class="fc-avatars">
+                            <div class="fc-avatar" style="background:#6366F1">KL</div>
+                            <div class="fc-avatar" style="background:#F59E0B">MR</div>
+                            <div class="fc-avatar" style="background:#10B981">AR</div>
+                        </div>
+                        <div>
+                            <div class="fc-info">+48 clientes</div>
+                            <div class="fc-sub">Nuevos este mes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA / SOLUCION -->
+    <section class="section problem-section" id="problema">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">El Problema</div>
+                <h2 class="section-title fade-in stagger-1">Tu negocio merece mas que una libreta</h2>
+                <p class="section-subtitle fade-in stagger-2">Cada dia que pasas sin un sistema, pierdes ventas, tiempo y clientes. La buena noticia: la solucion esta a un clic.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card fade-in stagger-1">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <h3>Sigues en libreta?</h3>
+                    <p>Tu contabilidad esta en cuadernos que se mojan, se pierden y no te dan reportes claros. Cada venta no registrada es dinero perdido.</p>
+                </div>
+
+                <div class="problem-card fade-in stagger-2">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>Ventas perdidas</h3>
+                    <p>Sin control de inventario, vendes de mas, te quedas sin stock sin saberlo, o pierdes clientes por no saber que tenes disponible.</p>
+                </div>
+
+                <div class="problem-card solution fade-in stagger-3">
+                    <div class="problem-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <h3>Nuestra solucion</h3>
+                    <p>Un sistema todo en uno: POS + Inventario + CRM. Sin mensualidades, personalizado para tu negocio, funcionando en 24 horas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SISTEMAS -->
+    <section class="section sistemas-section" id="sistemas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">Nuestros Sistemas</div>
+                <h2 class="section-title fade-in stagger-1">Software que se adapta a tu negocio</h2>
+                <p class="section-subtitle fade-in stagger-2">Tres soluciones pensadas para diferentes necesidades. Todas con la misma garantia: funcionan.</p>
+            </div>
+
+            <div class="sistemas-grid">
+                <div class="sistema-card fade-in stagger-1">
+                    <div class="sistema-card-header">
+                        <div class="sistema-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3>Sistema POS Rapido</h3>
+                        <p>Punto de venta offline ultra rapido para tiendas, farmacias y supermercados. Funciona sin internet.</p>
+                    </div>
+                    <div class="sistema-card-body">
+                        <div class="sistema-tech">
+                            <span>Java</span><span>C#</span><span>.NET</span><span>SQLite</span>
+                        </div>
+                        <p class="sistema-for"><strong>Para:</strong> Tiendas, farmacias, supermercados, locales comerciales</p>
+                    </div>
+                    <div class="sistema-footer">
+                        <div class="sistema-price">desde $300 <small>pago unico</small></div>
+                        <a href="https://wa.me/59176425697?text=Hola%2C%20quiero%20ver%20el%20demo%20del%20Sistema%20POS" class="btn btn-primary" target="_blank">Ver Demo</a>
+                    </div>
+                </div>
+
+                <div class="sistema-card fade-in stagger-2">
+                    <div class="sistema-card-header">
+                        <div class="sistema-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <h3>Sistema Web Inventario + CRM</h3>
+                        <p>Accede desde cualquier navegador. Controla inventario, clientes y ventas en tiempo real.</p>
+                    </div>
+                    <div class="sistema-card-body">
+                        <div class="sistema-tech">
+                            <span>React</span><span>Node.js</span><span>MySQL</span><span>AWS</span>
+                        </div>
+                        <p class="sistema-for"><strong>Para:</strong> Empresas, distribuidores, negocios con multiples sucursales</p>
+                    </div>
+                    <div class="sistema-footer">
+                        <div class="sistema-price">desde $500 <small>pago unico</small></div>
+                        <a href="https://wa.me/59176425697?text=Hola%2C%20quiero%20ver%20el%20demo%20del%20Sistema%20Web" class="btn btn-primary" target="_blank">Ver Demo</a>
+                    </div>
+                </div>
+
+                <div class="sistema-card fade-in stagger-3">
+                    <div class="sistema-card-header">
+                        <div class="sistema-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        </div>
+                        <h3>App Movil Reportes</h3>
+                        <p>Lleva tu negocio en el celular. Consulta ventas, inventario y reportes desde donde estes.</p>
+                    </div>
+                    <div class="sistema-card-body">
+                        <div class="sistema-tech">
+                            <span>Flutter</span><span>Dart</span><span>Firebase</span><span>REST API</span>
+                        </div>
+                        <p class="sistema-for"><strong>Para:</strong> Gerentes, duenos de negocio, equipo de ventas</p>
+                    </div>
+                    <div class="sistema-footer">
+                        <div class="sistema-price">desde $400 <small>pago unico</small></div>
+                        <a href="https://wa.me/59176425697?text=Hola%2C%20quiero%20ver%20el%20demo%20de%20la%20App%20Movil" class="btn btn-primary" target="_blank">Ver Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGIAS -->
+    <section class="tech-section" id="portafolio">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">Tecnologias</div>
+                <h2 class="section-title fade-in stagger-1">Stack moderno, resultados reales</h2>
+                <p class="section-subtitle fade-in stagger-2">Usamos las herramientas mas confiables de la industria para construir sistemas rapidos, seguros y escalables.</p>
+            </div>
+
+            <div class="tech-scroll fade-in stagger-3">
+                <div class="tech-item"><div class="tech-item-icon">☕</div><span>Java</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007BFF" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg></div><span>C# .NET</span></div>
+                <div class="tech-item"><div class="tech-item-icon">⚛️</div><span>React.js</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div><span>Node.js</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00CFFF" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div><span>Flutter</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><span>MySQL</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><span>PostgreSQL</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg></div><span>AWS</span></div>
+                <div class="tech-item"><div class="tech-item-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div><span>Hostinger</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">Testimonios</div>
+                <h2 class="section-title fade-in stagger-1">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle fade-in stagger-2">Negocios reales en Cochabamba que ya transformaron sus operaciones con LOKI SYSTEMS.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in stagger-1">
+                    <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p class="testimonial-text">"Gracias a LOKI SYSTEMS duplicamos nuestras ventas en 3 meses. El sistema POS es increiblemente rapido y mis empleados lo aprendieron en un dia."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div>
+                            <div class="testimonial-name">Maria Rodriguez</div>
+                            <div class="testimonial-role">Dueno - Farmacia Salud, Zona Sur</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in stagger-2">
+                    <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p class="testimonial-text">"Antes perdia el control de mi inventario con libretas. Ahora se exactamente que producto se vende mas y cuando reabastecer. Un cambio total."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">CA</div>
+                        <div>
+                            <div class="testimonial-name">Carlos Alvarado</div>
+                            <div class="testimonial-role">Dueno - Supermercado El Progreso, Cala Cala</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card fade-in stagger-3">
+                    <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                    <p class="testimonial-text">"Lo mejor es que no hay mensualidad. Pague una vez y es mio para siempre. Ademas, me instalaron todo en menos de 24 horas. Recomendado 100%."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LP</div>
+                        <div>
+                            <div class="testimonial-name">Laura Paredes</div>
+                            <div class="testimonial-role">Gerente - Boutique Elegance, Centro</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLA COMPARATIVA -->
+    <section class="section compare-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">Por que elegirnos</div>
+                <h2 class="section-title fade-in stagger-1">No somos como los demas</h2>
+                <p class="section-subtitle fade-in stagger-2">Comparacion honesta. Sin letra chica.</p>
+            </div>
+
+            <div class="fade-in stagger-3">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Caracteristica</th>
+                            <th>LOKI SYSTEMS</th>
+                            <th>Competencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Soporte tecnico</td><td><span class="compare-check">&#10003;</span> 24/7</td><td><span class="compare-x">&#10007;</span> Horario limitado</td></tr>
+                        <tr><td>Sistema personalizado</td><td><span class="compare-check">&#10003;</span> A medida</td><td><span class="compare-x">&#10007;</span> Generico</td></tr>
+                        <tr><td>Mensualidad</td><td><span class="compare-check">&#10003;</span> Sin mensualidad</td><td><span class="compare-x">&#10007;</span> Bs 200-500/mes</td></tr>
+                        <tr><td>Hecho en Bolivia</td><td><span class="compare-check">&#10003;</span> Cochabamba</td><td><span class="compare-x">&#10007;</span> Importado</td></tr>
+                        <tr><td>Instalacion</td><td><span class="compare-check">&#10003;</span> En 24 horas</td><td><span class="compare-x">&#10007;</span> Semanas</td></tr>
+                        <tr><td>Pago</td><td><span class="compare-check">&#10003;</span> Unico</td><td><span class="compare-x">&#10007;</span> Recurrente</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2 class="fade-in">Listo para profesionalizar tu negocio?</h2>
+            <p class="fade-in stagger-1">Unete a los 50+ negocios en Cochabamba que ya confian en LOKI SYSTEMS. Primera consulta sin compromiso.</p>
+            <a href="https://wa.me/59176425697?text=Hola%20LOKI%20SYSTEMS%2C%20quiero%20una%20demo%20gratuita" class="btn fade-in stagger-2" target="_blank">
+                Solicitar Demo Gratis
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="section about-section" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in-left">
+                    <div class="section-label">Sobre Nosotros</div>
+                    <h2 class="section-title">Digitalizando Bolivia, un negocio a la vez</h2>
+                    <p>Somos un equipo de desarrolladores en Cochabamba apasionados por crear soluciones de software que realmente funcionen para los comerciantes bolivianos.</p>
+                    <p>Creemos que cada negocio, sin importar su tamanio, merece tener un sistema profesional que le ayude a vender mas, controlar mejor y crecer con confianza.</p>
+
+                    <div class="about-values">
+                        <div class="about-value">Innovacion</div>
+                        <div class="about-value">Compromiso</div>
+                        <div class="about-value">Calidad</div>
+                        <div class="about-value">Rapidez</div>
+                    </div>
+                </div>
+
+                <div class="org-chart fade-in-right">
+                    <div class="org-title">Equipo Fundador</div>
+                    <div class="org-node">
+                        <div class="org-node-name">Kevin Lobera</div>
+                        <div class="org-node-role">Gerente General & Lead Developer</div>
+                    </div>
+                    <div class="org-branches">
+                        <div class="org-branch"><div class="org-branch-name">Desarrollo</div><div class="org-branch-role">Backend & Frontend</div></div>
+                        <div class="org-branch"><div class="org-branch-name">Soporte</div><div class="org-branch-role">24/7 Tecnico</div></div>
+                        <div class="org-branch"><div class="org-branch-name">Proyectos</div><div class="org-branch-role">Implementacion</div></div>
+                    </div>
+
+                    <div class="mission-box">
+                        <h4>Mision</h4>
+                        <p>Digitalizar el comercio boliviano con software accesible, potente y sin costos recurrentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section contact-section" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">Contacto</div>
+                <h2 class="section-title fade-in stagger-1">Hablemos de tu negocio</h2>
+                <p class="section-subtitle fade-in stagger-2">Decinos que necesitas y te armamos una propuesta en menos de 24 horas.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form fade-in-left stagger-1">
+                    <form id="contactForm" onsubmit="sendWhatsApp(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Tu nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Ej: Maria Lopez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="negocio">Tu negocio</label>
+                                <input type="text" id="negocio" name="negocio" placeholder="Ej: Farmacia Salud" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sistema">Tipo de sistema</label>
+                                <select id="sistema" name="sistema" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="POS">Sistema POS Rapido</option>
+                                    <option value="Web">Sistema Web Inventario + CRM</option>
+                                    <option value="Movil">App Movil Reportes</option>
+                                    <option value="Otro">Otro / No se</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="presupuesto">Presupuesto estimado</label>
+                                <select id="presupuesto" name="presupuesto">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="300-500">$300 - $500</option>
+                                    <option value="500-1000">$500 - $1,000</option>
+                                    <option value="1000-2000">$1,000 - $2,000</option>
+                                    <option value="2000+">Mas de $2,000</option>
+                                    <option value="no-se">No se / Aun decidiendo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje (opcional)</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuentanos mas sobre tu negocio y lo que necesitas..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Enviar por WhatsApp
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info fade-in-right stagger-2">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div><div class="contact-info-title">Ubicacion</div><div class="contact-info-text">Cochabamba, Bolivia</div></div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div><div class="contact-info-title">WhatsApp</div><div class="contact-info-text">+591 76425697</div></div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <div><div class="contact-info-title">Web</div><div class="contact-info-text">www.lokisystems.com</div></div>
+                    </div>
+
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d190257.39878050042!2d-66.2475!3d-17.414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373e31b0d1e23%3A0x4d8d21e7e020b3e0!2sCochabamba%2C%20Bolivia!5e0!3m2!1ses!2s!4v1690000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicacion LOKI SYSTEMS Cochabamba"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#inicio" class="logo">
+                        <div class="logo-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        LOKI SYSTEMS
+                    </a>
+                    <p>Desarrollamos software a medida para comerciantes de Bolivia. POS, inventarios y CRM sin mensualidades.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook" title="Facebook LOKI SYSTEMS"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" aria-label="TikTok" title="TikTok LOKI SYSTEMS"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a>
+                        <a href="https://wa.me/59176425697" aria-label="WhatsApp" title="WhatsApp LOKI SYSTEMS" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Sistemas</h4>
+                    <ul class="footer-links">
+                        <li><a href="#sistemas">POS Rapido</a></li>
+                        <li><a href="#sistemas">Web Inventario</a></li>
+                        <li><a href="#sistemas">App Movil</a></li>
+                        <li><a href="https://wa.me/59176425697?text=Hola%2C%20quiero%20una%20demo%20gratuita" target="_blank">Demo Gratis</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#portafolio">Portafolio</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/59176425697" target="_blank">WhatsApp: 76425697</a></li>
+                        <li><a href="https://www.lokisystems.com" target="_blank">www.lokisystems.com</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 LOKI SYSTEMS. Todos los derechos reservados.</p>
+                <p>Desarrollo de sistemas POS en Cochabamba, Bolivia.</p>
+            </div>
+
+            <p class="footer-seo">LOKI SYSTEMS es una empresa de desarrollo de software especializada en sistemas punto de venta (POS), software de inventario y CRM para comercios en Cochabamba y toda Bolivia. Ofrecemos soluciones de tecnologia a medida sin mensualidades, con instalacion en 24 horas y soporte tecnico 24/7. Si buscas el mejor sistema POS en Cochabamba o desarrollo de software en Bolivia, contactanos.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/59176425697?text=Hola%20LOKI%20SYSTEMS%2C%20necesito%20informacion%20sobre%20sus%20sistemas" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-tooltip">Escríbenos por WhatsApp</span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+    </a>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1200);
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const navActions = document.getElementById('navActions');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navActions.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a, .nav-actions .btn').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                navActions.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounters() {
+            document.querySelectorAll('[data-count]').forEach(el => {
+                const target = parseInt(el.getAttribute('data-count'));
+                if (!target || el.dataset.animated) return;
+                el.dataset.animated = 'true';
+                let current = 0;
+                const increment = target / 40;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current);
+                }, 30);
+            });
+        }
+
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) heroObserver.observe(heroStats);
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = 'var(--blue)';
+                }
+            });
+        });
+
+        // WhatsApp form
+        function sendWhatsApp(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const negocio = document.getElementById('negocio').value;
+            const sistema = document.getElementById('sistema').value;
+            const presupuesto = document.getElementById('presupuesto').value || 'No especificado';
+            const mensaje = document.getElementById('mensaje').value || 'Sin mensaje adicional';
+
+            const text = encodeURIComponent(
+                `Hola LOKI SYSTEMS!\n\n` +
+                `*Nombre:* ${nombre}\n` +
+                `*Negocio:* ${negocio}\n` +
+                `*Sistema:* ${sistema}\n` +
+                `*Presupuesto:* ${presupuesto}\n` +
+                `*Mensaje:* ${mensaje}\n\n` +
+                `Quiero solicitar informacion y demo gratuita.`
+            );
+
+            window.open(`https://wa.me/59176425697?text=${text}`, '_blank');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
