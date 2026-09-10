@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://loberakevin928-ship-it.github.io/lokisystems.github.io/sitemap.xml
